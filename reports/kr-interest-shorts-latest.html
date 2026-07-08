@@ -1,0 +1,869 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>관심사 기반 YouTube Shorts 트렌드 리포트</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a33;--card:#18213d;--muted:#9fb0d0;--text:#eef4ff;--accent:#ff3158;--accent2:#63e6be;--line:#293554}
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,sans-serif;background:linear-gradient(180deg,#090d1a,#101833 45%,#0b1020);color:var(--text)} a{color:inherit}
+header,main,footer{max-width:1180px;margin:0 auto;padding-left:24px;padding-right:24px} header{padding-top:42px;padding-bottom:22px} .badge{display:inline-flex;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:rgba(255,255,255,.03);font-size:13px}
+h1{font-size:clamp(30px,5vw,54px);line-height:1.05;margin:18px 0 12px;letter-spacing:-.04em} .lead,.note,footer{color:var(--muted);line-height:1.65} .summary{width:100%;border-collapse:collapse;border-radius:16px;overflow:hidden;background:var(--panel);border:1px solid var(--line);margin:22px 0 34px}
+.summary th,.summary td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} .summary th{background:rgba(255,255,255,.04);color:#cfe0ff;font-size:13px} .summary td{color:var(--muted);font-size:14px}
+section{margin:38px 0 56px} h2{font-size:30px;margin:0 0 8px;letter-spacing:-.03em} .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{background:rgba(24,33,61,.94);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.22)} .thumb{display:block;position:relative;aspect-ratio:16/9;background:#050814;overflow:hidden;text-decoration:none}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .18s ease,opacity .18s ease} .thumb:hover img{transform:scale(1.04);opacity:.88} .duration,.rank{position:absolute;padding:5px 8px;border-radius:999px;background:rgba(0,0,0,.76);font-size:12px;font-weight:700}
+.duration{right:9px;bottom:9px} .rank{left:9px;top:9px;background:rgba(255,49,88,.9)} .body{padding:14px} .title{display:block;font-weight:800;line-height:1.35;text-decoration:none;letter-spacing:-.02em;min-height:2.7em} .title:hover{color:#ffd3dc;text-decoration:underline}
+.channel{color:#d6e0f5;margin-top:10px;font-size:14px} .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px} .meta span{color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:12px;background:rgba(255,255,255,.03)}
+.pub,.query{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.5} .links{display:flex;gap:10px;margin-top:12px} .links a{color:#9ee8ff;font-size:12px;text-decoration:none} .links a:hover{text-decoration:underline} .empty{color:var(--muted);background:var(--panel);border:1px dashed var(--line);padding:18px;border-radius:16px} footer{border-top:1px solid var(--line);padding-top:24px;padding-bottom:28px}
+@media(max-width:720px){.summary{display:block;overflow-x:auto}}
+</style></head><body>
+<header><div class="badge">YouTube Data API v3 · 관심사 Shorts · 조회 2026-07-08 22:35:20 KST</div><h1>관심사 기반<br/>YouTube Shorts 트렌드 리포트</h1><p class="lead">전체 인기 차트에서 음악/영화/게임이 과대표집되는 문제를 피하기 위해, 생활·쇼핑·일상·정보전달 키워드로 최근 14일 한국 Shorts 후보를 별도 수집했습니다. 썸네일/제목/링크를 누르면 YouTube에서 확인할 수 있습니다.</p></header>
+<main><table class="summary"><thead><tr><th>섹션</th><th>후보 수</th><th>주요 카테고리</th><th>최고 조회수</th></tr></thead><tbody><tr><td>생활/살림 꿀팁</td><td>57</td><td>인물/블로그 24, 노하우/스타일 18, 엔터테인먼트 6</td><td>52.8만</td></tr><tr><td>쇼핑/제품 추천</td><td>67</td><td>노하우/스타일 34, 인물/블로그 17, 엔터테인먼트 9</td><td>29.4만</td></tr><tr><td>자취/일상</td><td>58</td><td>인물/블로그 32, 노하우/스타일 10, 엔터테인먼트 5</td><td>320.3만</td></tr><tr><td>정보전달/저장각</td><td>68</td><td>인물/블로그 24, 노하우/스타일 18, 교육 7</td><td>19.9만</td></tr></tbody></table>
+<section><h2>전체 관심사 TOP 12</h2><p class="note">모든 관심사 후보를 합산한 종합 랭킹입니다.</p><div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/kzFFmJhH3tg" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/kzFFmJhH3tg/maxresdefault.jpg" alt="이효리가 15년째 지켜왔다는 식사 루틴 - 자기 관리의 끝판왕 #이효리 썸네일" loading="lazy" />
+            <span class="rank">#1</span>
+            <span class="duration">0:24</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/kzFFmJhH3tg" target="_blank" rel="noopener noreferrer">이효리가 15년째 지켜왔다는 식사 루틴 - 자기 관리의 끝판왕 #이효리</a>
+            <div class="channel">즐거운타임</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 320.3만</span><span>좋아요 8,719</span><span>댓글 144</span></div>
+            <div class="pub">업로드: 2026-06-25</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=kzFFmJhH3tg" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/kzFFmJhH3tg" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/HKZjFGqv8Lw" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/HKZjFGqv8Lw/maxresdefault.jpg" alt="‘아이돌만 안다는’ 엔딩요정 10초 전 필수 루틴 썸네일" loading="lazy" />
+            <span class="rank">#2</span>
+            <span class="duration">0:25</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/HKZjFGqv8Lw" target="_blank" rel="noopener noreferrer">‘아이돌만 안다는’ 엔딩요정 10초 전 필수 루틴</a>
+            <div class="channel">패션탐정냥</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 90.2만</span><span>좋아요 9,585</span><span>댓글 17</span></div>
+            <div class="pub">업로드: 2026-07-04</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=HKZjFGqv8Lw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/HKZjFGqv8Lw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/aypmZ7gp3pw" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/aypmZ7gp3pw/maxresdefault.jpg" alt="폐까지 맑아진다는 아이돌 구강 청결 루틴 썸네일" loading="lazy" />
+            <span class="rank">#3</span>
+            <span class="duration">0:16</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/aypmZ7gp3pw" target="_blank" rel="noopener noreferrer">폐까지 맑아진다는 아이돌 구강 청결 루틴</a>
+            <div class="channel">언니픽</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 31.4만</span><span>좋아요 6,890</span><span>댓글 41</span></div>
+            <div class="pub">업로드: 2026-07-07</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=aypmZ7gp3pw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/aypmZ7gp3pw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/3WeZvflcoag" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/3WeZvflcoag/maxresdefault.jpg" alt="진짜 벌꿀은 이렇게 확인하시면 됩니다! #살림 #살림꿀팁 #숏킹 썸네일" loading="lazy" />
+            <span class="rank">#1</span>
+            <span class="duration">0:32</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/3WeZvflcoag" target="_blank" rel="noopener noreferrer">진짜 벌꿀은 이렇게 확인하시면 됩니다! #살림 #살림꿀팁 #숏킹</a>
+            <div class="channel">꿀템추추</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 52.8만</span><span>좋아요 1.3만</span><span>댓글 56</span></div>
+            <div class="pub">업로드: 2026-06-29</div>
+            <div class="query">매칭 키워드: 살림 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=3WeZvflcoag" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/3WeZvflcoag" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/BCjcf1f9_1k" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/BCjcf1f9_1k/maxresdefault.jpg" alt="알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁 썸네일" loading="lazy" />
+            <span class="rank">#2</span>
+            <span class="duration">2:09</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/BCjcf1f9_1k" target="_blank" rel="noopener noreferrer">알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁</a>
+            <div class="channel">진짜꿀팁 Realtips</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 29.5만</span><span>좋아요 3,539</span><span>댓글 13</span></div>
+            <div class="pub">업로드: 2026-07-05</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts, 살림 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=BCjcf1f9_1k" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/BCjcf1f9_1k" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/PSPuwjU2C7o" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/PSPuwjU2C7o/maxresdefault.jpg" alt="가지나물 찜기에 찌다간 진짜 큰코다칩니다! #살림 #살림꿀팁 #숏킹 썸네일" loading="lazy" />
+            <span class="rank">#3</span>
+            <span class="duration">0:28</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/PSPuwjU2C7o" target="_blank" rel="noopener noreferrer">가지나물 찜기에 찌다간 진짜 큰코다칩니다! #살림 #살림꿀팁 #숏킹</a>
+            <div class="channel">꿀템추추</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 36.9만</span><span>좋아요 6,708</span><span>댓글 20</span></div>
+            <div class="pub">업로드: 2026-06-30</div>
+            <div class="query">매칭 키워드: 살림 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=PSPuwjU2C7o" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/PSPuwjU2C7o" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/iaWCfsvcG8c" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/iaWCfsvcG8c/maxresdefault.jpg" alt="Vaseline and Toothpaste Saved My Glasses #lifehack #glasses #shorts 썸네일" loading="lazy" />
+            <span class="rank">#4</span>
+            <span class="duration">1:32</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/iaWCfsvcG8c" target="_blank" rel="noopener noreferrer">Vaseline and Toothpaste Saved My Glasses #lifehack #glasses #shorts</a>
+            <div class="channel">Latin Kitchen</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 32.0만</span><span>좋아요 2,874</span><span>댓글 51</span></div>
+            <div class="pub">업로드: 2026-07-01</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=iaWCfsvcG8c" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/iaWCfsvcG8c" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/E-FwC4UC5vA" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/E-FwC4UC5vA/maxresdefault.jpg" alt="다이소 가면 꼭 사야할 5가지 #다이소 #살림 #꿀템 #살림초보 #다이소추천 썸네일" loading="lazy" />
+            <span class="rank">#1</span>
+            <span class="duration">1:08</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/E-FwC4UC5vA" target="_blank" rel="noopener noreferrer">다이소 가면 꼭 사야할 5가지 #다이소 #살림 #꿀템 #살림초보 #다이소추천</a>
+            <div class="channel">살림천재노다지</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 29.4만</span><span>좋아요 2,719</span><span>댓글 25</span></div>
+            <div class="pub">업로드: 2026-06-30</div>
+            <div class="query">매칭 키워드: 다이소 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=E-FwC4UC5vA" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/E-FwC4UC5vA" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/kq_cjoXnAL4" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/kq_cjoXnAL4/maxresdefault.jpg" alt="알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁 썸네일" loading="lazy" />
+            <span class="rank">#5</span>
+            <span class="duration">2:04</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/kq_cjoXnAL4" target="_blank" rel="noopener noreferrer">알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁</a>
+            <div class="channel">진짜꿀팁 Realtips</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 12.5만</span><span>좋아요 2,053</span><span>댓글 12</span></div>
+            <div class="pub">업로드: 2026-07-06</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=kq_cjoXnAL4" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/kq_cjoXnAL4" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/OJ9kvS3-d2c/maxresdefault.jpg" alt="끈 하나로 짧아서 안 묶이는 비닐 꽉! 묶는 가장 쉬운 방법ㄷㄷ 썸네일" loading="lazy" />
+            <span class="rank">#6</span>
+            <span class="duration">0:13</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">끈 하나로 짧아서 안 묶이는 비닐 꽉! 묶는 가장 쉬운 방법ㄷㄷ</a>
+            <div class="channel">신박발견</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 14.5만</span><span>좋아요 1,236</span><span>댓글 17</span></div>
+            <div class="pub">업로드: 2026-07-06</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/ZqTlON7rzWw" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/ZqTlON7rzWw/maxresdefault.jpg" alt="콩나물 무침 절대 소금만 넣지 마세요! #살림 #살림꿀팁 #숏킹 썸네일" loading="lazy" />
+            <span class="rank">#7</span>
+            <span class="duration">0:31</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/ZqTlON7rzWw" target="_blank" rel="noopener noreferrer">콩나물 무침 절대 소금만 넣지 마세요! #살림 #살림꿀팁 #숏킹</a>
+            <div class="channel">꿀템추추</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 26.2만</span><span>좋아요 6,760</span><span>댓글 8</span></div>
+            <div class="pub">업로드: 2026-06-25</div>
+            <div class="query">매칭 키워드: 살림 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=ZqTlON7rzWw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/ZqTlON7rzWw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/akdZrRruuZc" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/akdZrRruuZc/maxresdefault.jpg" alt="해외여행 인생샷 건진 코디 추천💓👗#shorts 썸네일" loading="lazy" />
+            <span class="rank">#2</span>
+            <span class="duration">1:01</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/akdZrRruuZc" target="_blank" rel="noopener noreferrer">해외여행 인생샷 건진 코디 추천💓👗#shorts</a>
+            <div class="channel">이리유 iliyu</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 9.5만</span><span>좋아요 2,546</span><span>댓글 111</span></div>
+            <div class="pub">업로드: 2026-07-05</div>
+            <div class="query">매칭 키워드: 쇼핑 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=akdZrRruuZc" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/akdZrRruuZc" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div></section>
+
+    <section>
+      <h2>생활/살림 꿀팁</h2>
+      <p class="note">최근 14일 · 한국 · 3분 이하 Shorts 후보 · 조회/참여/신선도 기반 자체 랭킹</p>
+      <div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/3WeZvflcoag" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/3WeZvflcoag/maxresdefault.jpg" alt="진짜 벌꿀은 이렇게 확인하시면 됩니다! #살림 #살림꿀팁 #숏킹 썸네일" loading="lazy" />
+            <span class="rank">#1</span>
+            <span class="duration">0:32</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/3WeZvflcoag" target="_blank" rel="noopener noreferrer">진짜 벌꿀은 이렇게 확인하시면 됩니다! #살림 #살림꿀팁 #숏킹</a>
+            <div class="channel">꿀템추추</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 52.8만</span><span>좋아요 1.3만</span><span>댓글 56</span></div>
+            <div class="pub">업로드: 2026-06-29</div>
+            <div class="query">매칭 키워드: 살림 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=3WeZvflcoag" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/3WeZvflcoag" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/BCjcf1f9_1k" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/BCjcf1f9_1k/maxresdefault.jpg" alt="알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁 썸네일" loading="lazy" />
+            <span class="rank">#2</span>
+            <span class="duration">2:09</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/BCjcf1f9_1k" target="_blank" rel="noopener noreferrer">알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁</a>
+            <div class="channel">진짜꿀팁 Realtips</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 29.5만</span><span>좋아요 3,539</span><span>댓글 13</span></div>
+            <div class="pub">업로드: 2026-07-05</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts, 살림 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=BCjcf1f9_1k" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/BCjcf1f9_1k" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/PSPuwjU2C7o" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/PSPuwjU2C7o/maxresdefault.jpg" alt="가지나물 찜기에 찌다간 진짜 큰코다칩니다! #살림 #살림꿀팁 #숏킹 썸네일" loading="lazy" />
+            <span class="rank">#3</span>
+            <span class="duration">0:28</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/PSPuwjU2C7o" target="_blank" rel="noopener noreferrer">가지나물 찜기에 찌다간 진짜 큰코다칩니다! #살림 #살림꿀팁 #숏킹</a>
+            <div class="channel">꿀템추추</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 36.9만</span><span>좋아요 6,708</span><span>댓글 20</span></div>
+            <div class="pub">업로드: 2026-06-30</div>
+            <div class="query">매칭 키워드: 살림 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=PSPuwjU2C7o" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/PSPuwjU2C7o" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/iaWCfsvcG8c" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/iaWCfsvcG8c/maxresdefault.jpg" alt="Vaseline and Toothpaste Saved My Glasses #lifehack #glasses #shorts 썸네일" loading="lazy" />
+            <span class="rank">#4</span>
+            <span class="duration">1:32</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/iaWCfsvcG8c" target="_blank" rel="noopener noreferrer">Vaseline and Toothpaste Saved My Glasses #lifehack #glasses #shorts</a>
+            <div class="channel">Latin Kitchen</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 32.0만</span><span>좋아요 2,874</span><span>댓글 51</span></div>
+            <div class="pub">업로드: 2026-07-01</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=iaWCfsvcG8c" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/iaWCfsvcG8c" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/kq_cjoXnAL4" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/kq_cjoXnAL4/maxresdefault.jpg" alt="알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁 썸네일" loading="lazy" />
+            <span class="rank">#5</span>
+            <span class="duration">2:04</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/kq_cjoXnAL4" target="_blank" rel="noopener noreferrer">알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁</a>
+            <div class="channel">진짜꿀팁 Realtips</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 12.5만</span><span>좋아요 2,053</span><span>댓글 12</span></div>
+            <div class="pub">업로드: 2026-07-06</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=kq_cjoXnAL4" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/kq_cjoXnAL4" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/OJ9kvS3-d2c/maxresdefault.jpg" alt="끈 하나로 짧아서 안 묶이는 비닐 꽉! 묶는 가장 쉬운 방법ㄷㄷ 썸네일" loading="lazy" />
+            <span class="rank">#6</span>
+            <span class="duration">0:13</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">끈 하나로 짧아서 안 묶이는 비닐 꽉! 묶는 가장 쉬운 방법ㄷㄷ</a>
+            <div class="channel">신박발견</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 14.5만</span><span>좋아요 1,236</span><span>댓글 17</span></div>
+            <div class="pub">업로드: 2026-07-06</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/ZqTlON7rzWw" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/ZqTlON7rzWw/maxresdefault.jpg" alt="콩나물 무침 절대 소금만 넣지 마세요! #살림 #살림꿀팁 #숏킹 썸네일" loading="lazy" />
+            <span class="rank">#7</span>
+            <span class="duration">0:31</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/ZqTlON7rzWw" target="_blank" rel="noopener noreferrer">콩나물 무침 절대 소금만 넣지 마세요! #살림 #살림꿀팁 #숏킹</a>
+            <div class="channel">꿀템추추</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 26.2만</span><span>좋아요 6,760</span><span>댓글 8</span></div>
+            <div class="pub">업로드: 2026-06-25</div>
+            <div class="query">매칭 키워드: 살림 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=ZqTlON7rzWw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/ZqTlON7rzWw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/PKgeJ9pxurQ" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/PKgeJ9pxurQ/maxresdefault.jpg" alt="알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁 썸네일" loading="lazy" />
+            <span class="rank">#8</span>
+            <span class="duration">2:01</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/PKgeJ9pxurQ" target="_blank" rel="noopener noreferrer">알아두면 쓸모있는 생활 꿀팁 10가지 #살림팁 #꿀팁 #생활꿀팁</a>
+            <div class="channel">진짜꿀팁 Realtips</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 14.2만</span><span>좋아요 1,841</span><span>댓글 19</span></div>
+            <div class="pub">업로드: 2026-07-04</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=PKgeJ9pxurQ" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/PKgeJ9pxurQ" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/0n7rkQ_TSTo" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/0n7rkQ_TSTo/maxresdefault.jpg" alt="자전거에 톱을?달면 일어나는 일 🧐 #아이디어 #발명품 #생활꿀팁 썸네일" loading="lazy" />
+            <span class="rank">#9</span>
+            <span class="duration">0:07</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/0n7rkQ_TSTo" target="_blank" rel="noopener noreferrer">자전거에 톱을?달면 일어나는 일 🧐 #아이디어 #발명품 #생활꿀팁</a>
+            <div class="channel">HGTV</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 22.2만</span><span>좋아요 109</span><span>댓글 24</span></div>
+            <div class="pub">업로드: 2026-07-01</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=0n7rkQ_TSTo" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/0n7rkQ_TSTo" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/NZnZ3xz8tVk/maxresdefault.jpg" alt="내 숨은 돈 찾기부터 일상 꿀팁까지! 당장 저장해야 할 필수 번호 썸네일" loading="lazy" />
+            <span class="rank">#10</span>
+            <span class="duration">0:08</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">내 숨은 돈 찾기부터 일상 꿀팁까지! 당장 저장해야 할 필수 번호</a>
+            <div class="channel">인생공구함🔧</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 19.9만</span><span>좋아요 1,009</span><span>댓글 3</span></div>
+            <div class="pub">업로드: 2026-06-29</div>
+            <div class="query">매칭 키워드: 생활 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div>
+    </section>
+    <section>
+      <h2>쇼핑/제품 추천</h2>
+      <p class="note">최근 14일 · 한국 · 3분 이하 Shorts 후보 · 조회/참여/신선도 기반 자체 랭킹</p>
+      <div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/E-FwC4UC5vA" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/E-FwC4UC5vA/maxresdefault.jpg" alt="다이소 가면 꼭 사야할 5가지 #다이소 #살림 #꿀템 #살림초보 #다이소추천 썸네일" loading="lazy" />
+            <span class="rank">#1</span>
+            <span class="duration">1:08</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/E-FwC4UC5vA" target="_blank" rel="noopener noreferrer">다이소 가면 꼭 사야할 5가지 #다이소 #살림 #꿀템 #살림초보 #다이소추천</a>
+            <div class="channel">살림천재노다지</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 29.4만</span><span>좋아요 2,719</span><span>댓글 25</span></div>
+            <div class="pub">업로드: 2026-06-30</div>
+            <div class="query">매칭 키워드: 다이소 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=E-FwC4UC5vA" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/E-FwC4UC5vA" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/akdZrRruuZc" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/akdZrRruuZc/maxresdefault.jpg" alt="해외여행 인생샷 건진 코디 추천💓👗#shorts 썸네일" loading="lazy" />
+            <span class="rank">#2</span>
+            <span class="duration">1:01</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/akdZrRruuZc" target="_blank" rel="noopener noreferrer">해외여행 인생샷 건진 코디 추천💓👗#shorts</a>
+            <div class="channel">이리유 iliyu</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 9.5만</span><span>좋아요 2,546</span><span>댓글 111</span></div>
+            <div class="pub">업로드: 2026-07-05</div>
+            <div class="query">매칭 키워드: 쇼핑 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=akdZrRruuZc" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/akdZrRruuZc" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/M9Bya3ucBFQ" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/M9Bya3ucBFQ/maxresdefault.jpg" alt="이지혜도 입자마자 반해버린 채정안 애착 가디건 실물 ㄷㄷ #shorts #연예인 #꿀템 #여름코디 #쿠팡추천템 #이지혜 #여름가디건 썸네일" loading="lazy" />
+            <span class="rank">#3</span>
+            <span class="duration">0:23</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/M9Bya3ucBFQ" target="_blank" rel="noopener noreferrer">이지혜도 입자마자 반해버린 채정안 애착 가디건 실물 ㄷㄷ #shorts #연예인 #꿀템 #여름코디 #쿠팡추천템 #이지혜 #여름가디건</a>
+            <div class="channel">손민수zip</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 31.3만</span><span>좋아요 411</span><span>댓글 0</span></div>
+            <div class="pub">업로드: 2026-06-25</div>
+            <div class="query">매칭 키워드: 쿠팡 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=M9Bya3ucBFQ" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/M9Bya3ucBFQ" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/IWZTo6NIC3M" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/IWZTo6NIC3M/maxresdefault.jpg" alt="다이소 사장님이 보면 눈 돌아감;; #그림 #미술 #예술 #아트 #유머 #힐링영상 #쇼츠 #diy 썸네일" loading="lazy" />
+            <span class="rank">#4</span>
+            <span class="duration">0:23</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/IWZTo6NIC3M" target="_blank" rel="noopener noreferrer">다이소 사장님이 보면 눈 돌아감;; #그림 #미술 #예술 #아트 #유머 #힐링영상 #쇼츠 #diy</a>
+            <div class="channel">나도그림</div>
+            <div class="meta"><span>교육</span><span>조회 19.1만</span><span>좋아요 1,674</span><span>댓글 23</span></div>
+            <div class="pub">업로드: 2026-07-01</div>
+            <div class="query">매칭 키워드: 다이소 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=IWZTo6NIC3M" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/IWZTo6NIC3M" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/1dwpO42qpXI" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/1dwpO42qpXI/maxresdefault.jpg" alt="151cm가 추천하는 키작녀 숏팬츠! 이거 사세요💓 #ootd #데일리룩코디 #데일리룩 #데일리템 #여름코디 #코디추천 썸네일" loading="lazy" />
+            <span class="rank">#5</span>
+            <span class="duration">0:25</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/1dwpO42qpXI" target="_blank" rel="noopener noreferrer">151cm가 추천하는 키작녀 숏팬츠! 이거 사세요💓 #ootd #데일리룩코디 #데일리룩 #데일리템 #여름코디 #코디추천</a>
+            <div class="channel">서하 SeoHa</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 10.4만</span><span>좋아요 2,496</span><span>댓글 21</span></div>
+            <div class="pub">업로드: 2026-07-03</div>
+            <div class="query">매칭 키워드: 쇼핑 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=1dwpO42qpXI" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/1dwpO42qpXI" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/b7jhU_cm_4g" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/b7jhU_cm_4g/maxresdefault.jpg" alt="다이소 사장님도 울고 간 문고리템;; #그림 #미술 #유머 #아트 #예술 #힐링영상 #쇼츠 #다이소 썸네일" loading="lazy" />
+            <span class="rank">#6</span>
+            <span class="duration">0:12</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/b7jhU_cm_4g" target="_blank" rel="noopener noreferrer">다이소 사장님도 울고 간 문고리템;; #그림 #미술 #유머 #아트 #예술 #힐링영상 #쇼츠 #다이소</a>
+            <div class="channel">나도그림</div>
+            <div class="meta"><span>교육</span><span>조회 7.3만</span><span>좋아요 494</span><span>댓글 6</span></div>
+            <div class="pub">업로드: 2026-07-04</div>
+            <div class="query">매칭 키워드: 다이소 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=b7jhU_cm_4g" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/b7jhU_cm_4g" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/rVy8VwZddwU" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/rVy8VwZddwU/maxresdefault.jpg" alt="다이소 신상 미피 보냉백 #shorts 썸네일" loading="lazy" />
+            <span class="rank">#7</span>
+            <span class="duration">0:37</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/rVy8VwZddwU" target="_blank" rel="noopener noreferrer">다이소 신상 미피 보냉백 #shorts</a>
+            <div class="channel">해피성이</div>
+            <div class="meta"><span>여행/이벤트</span><span>조회 11.4만</span><span>좋아요 576</span><span>댓글 41</span></div>
+            <div class="pub">업로드: 2026-06-24</div>
+            <div class="query">매칭 키워드: 다이소 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=rVy8VwZddwU" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/rVy8VwZddwU" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/rOXIHggpeEA" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/rOXIHggpeEA/maxresdefault.jpg" alt="다이소 사장님 뒷목 잡음 ㅋㅋ #그림 #미술 #아트 #웃긴영상 #쇼츠 #유머 #예술 #그림그리기 #다이소 #diy 썸네일" loading="lazy" />
+            <span class="rank">#8</span>
+            <span class="duration">0:11</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/rOXIHggpeEA" target="_blank" rel="noopener noreferrer">다이소 사장님 뒷목 잡음 ㅋㅋ #그림 #미술 #아트 #웃긴영상 #쇼츠 #유머 #예술 #그림그리기 #다이소 #diy</a>
+            <div class="channel">만물그림</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 5.8만</span><span>좋아요 283</span><span>댓글 14</span></div>
+            <div class="pub">업로드: 2026-07-04</div>
+            <div class="query">매칭 키워드: 다이소 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=rOXIHggpeEA" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/rOXIHggpeEA" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/HzknzKz-Xf0" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/HzknzKz-Xf0/maxresdefault.jpg" alt="자라 여름 세일 ✨ 실패없는 꿀템 총정리 썸네일" loading="lazy" />
+            <span class="rank">#9</span>
+            <span class="duration">0:26</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/HzknzKz-Xf0" target="_blank" rel="noopener noreferrer">자라 여름 세일 ✨ 실패없는 꿀템 총정리</a>
+            <div class="channel">임마멜 mamel</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 9.0만</span><span>좋아요 819</span><span>댓글 23</span></div>
+            <div class="pub">업로드: 2026-06-25</div>
+            <div class="query">매칭 키워드: 쇼핑 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=HzknzKz-Xf0" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/HzknzKz-Xf0" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/ooDOBrk5h6A" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/ooDOBrk5h6A/maxresdefault.jpg" alt="여름코디 하객룩 추천 #grwm #ootd #쇼츠 #여름코디 #겟레디윗미 #shorts #롱스커트코디 #키큰여자코디 #하객룩코디 #출근룩코디 #데이트룩코디 썸네일" loading="lazy" />
+            <span class="rank">#10</span>
+            <span class="duration">0:11</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/ooDOBrk5h6A" target="_blank" rel="noopener noreferrer">여름코디 하객룩 추천 #grwm #ootd #쇼츠 #여름코디 #겟레디윗미 #shorts #롱스커트코디 #키큰여자코디 #하객룩코디 #출근룩코디 #데이트룩코디</a>
+            <div class="channel">나티 | 데일리룩 코디제안</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 7.7만</span><span>좋아요 857</span><span>댓글 9</span></div>
+            <div class="pub">업로드: 2026-06-25</div>
+            <div class="query">매칭 키워드: 쇼핑 추천 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=ooDOBrk5h6A" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/ooDOBrk5h6A" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div>
+    </section>
+    <section>
+      <h2>자취/일상</h2>
+      <p class="note">최근 14일 · 한국 · 3분 이하 Shorts 후보 · 조회/참여/신선도 기반 자체 랭킹</p>
+      <div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/kzFFmJhH3tg" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/kzFFmJhH3tg/maxresdefault.jpg" alt="이효리가 15년째 지켜왔다는 식사 루틴 - 자기 관리의 끝판왕 #이효리 썸네일" loading="lazy" />
+            <span class="rank">#1</span>
+            <span class="duration">0:24</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/kzFFmJhH3tg" target="_blank" rel="noopener noreferrer">이효리가 15년째 지켜왔다는 식사 루틴 - 자기 관리의 끝판왕 #이효리</a>
+            <div class="channel">즐거운타임</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 320.3만</span><span>좋아요 8,719</span><span>댓글 144</span></div>
+            <div class="pub">업로드: 2026-06-25</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=kzFFmJhH3tg" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/kzFFmJhH3tg" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/HKZjFGqv8Lw" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/HKZjFGqv8Lw/maxresdefault.jpg" alt="‘아이돌만 안다는’ 엔딩요정 10초 전 필수 루틴 썸네일" loading="lazy" />
+            <span class="rank">#2</span>
+            <span class="duration">0:25</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/HKZjFGqv8Lw" target="_blank" rel="noopener noreferrer">‘아이돌만 안다는’ 엔딩요정 10초 전 필수 루틴</a>
+            <div class="channel">패션탐정냥</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 90.2만</span><span>좋아요 9,585</span><span>댓글 17</span></div>
+            <div class="pub">업로드: 2026-07-04</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=HKZjFGqv8Lw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/HKZjFGqv8Lw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/aypmZ7gp3pw" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/aypmZ7gp3pw/maxresdefault.jpg" alt="폐까지 맑아진다는 아이돌 구강 청결 루틴 썸네일" loading="lazy" />
+            <span class="rank">#3</span>
+            <span class="duration">0:16</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/aypmZ7gp3pw" target="_blank" rel="noopener noreferrer">폐까지 맑아진다는 아이돌 구강 청결 루틴</a>
+            <div class="channel">언니픽</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 31.4만</span><span>좋아요 6,890</span><span>댓글 41</span></div>
+            <div class="pub">업로드: 2026-07-07</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=aypmZ7gp3pw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/aypmZ7gp3pw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/OJ9kvS3-d2c/maxresdefault.jpg" alt="끈 하나로 짧아서 안 묶이는 비닐 꽉! 묶는 가장 쉬운 방법ㄷㄷ 썸네일" loading="lazy" />
+            <span class="rank">#4</span>
+            <span class="duration">0:13</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">끈 하나로 짧아서 안 묶이는 비닐 꽉! 묶는 가장 쉬운 방법ㄷㄷ</a>
+            <div class="channel">신박발견</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 14.5만</span><span>좋아요 1,236</span><span>댓글 17</span></div>
+            <div class="pub">업로드: 2026-07-06</div>
+            <div class="query">매칭 키워드: 일상 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/OJ9kvS3-d2c" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/0n7rkQ_TSTo" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/0n7rkQ_TSTo/maxresdefault.jpg" alt="자전거에 톱을?달면 일어나는 일 🧐 #아이디어 #발명품 #생활꿀팁 썸네일" loading="lazy" />
+            <span class="rank">#5</span>
+            <span class="duration">0:07</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/0n7rkQ_TSTo" target="_blank" rel="noopener noreferrer">자전거에 톱을?달면 일어나는 일 🧐 #아이디어 #발명품 #생활꿀팁</a>
+            <div class="channel">HGTV</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 22.2만</span><span>좋아요 109</span><span>댓글 24</span></div>
+            <div class="pub">업로드: 2026-07-01</div>
+            <div class="query">매칭 키워드: 일상 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=0n7rkQ_TSTo" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/0n7rkQ_TSTo" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/7yqzXpLaZn0" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/7yqzXpLaZn0/maxresdefault.jpg" alt="50대 박진영이 피부과 한 번 안 가고 ‘젊음’ 유지하는 미친 루틴 ㄷㄷ#박진영 #건강관리 #피부관리 #김종국 #shorts 썸네일" loading="lazy" />
+            <span class="rank">#6</span>
+            <span class="duration">0:31</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/7yqzXpLaZn0" target="_blank" rel="noopener noreferrer">50대 박진영이 피부과 한 번 안 가고 ‘젊음’ 유지하는 미친 루틴 ㄷㄷ#박진영 #건강관리 #피부관리 #김종국 #shorts</a>
+            <div class="channel">사과파이</div>
+            <div class="meta"><span>음악</span><span>조회 15.1만</span><span>좋아요 875</span><span>댓글 14</span></div>
+            <div class="pub">업로드: 2026-07-04</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=7yqzXpLaZn0" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/7yqzXpLaZn0" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/NZnZ3xz8tVk/maxresdefault.jpg" alt="내 숨은 돈 찾기부터 일상 꿀팁까지! 당장 저장해야 할 필수 번호 썸네일" loading="lazy" />
+            <span class="rank">#7</span>
+            <span class="duration">0:08</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">내 숨은 돈 찾기부터 일상 꿀팁까지! 당장 저장해야 할 필수 번호</a>
+            <div class="channel">인생공구함🔧</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 19.9만</span><span>좋아요 1,009</span><span>댓글 3</span></div>
+            <div class="pub">업로드: 2026-06-29</div>
+            <div class="query">매칭 키워드: 일상 꿀팁 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/6oQOot82fJg" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/6oQOot82fJg/maxresdefault.jpg" alt="직장인의 깨끗한 시야를 위한 렌즈 관리 루틴👀✨ 썸네일" loading="lazy" />
+            <span class="rank">#8</span>
+            <span class="duration">0:57</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/6oQOot82fJg" target="_blank" rel="noopener noreferrer">직장인의 깨끗한 시야를 위한 렌즈 관리 루틴👀✨</a>
+            <div class="channel">BauschLombKorea</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 10.7만</span><span>좋아요 141</span><span>댓글 0</span></div>
+            <div class="pub">업로드: 2026-06-26</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=6oQOot82fJg" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/6oQOot82fJg" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/qouYI9WCLOY" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/qouYI9WCLOY/maxresdefault.jpg" alt="Razia rutin sebelum berangkat kerja😄 #tni #shorts #youtube #trending 썸네일" loading="lazy" />
+            <span class="rank">#9</span>
+            <span class="duration">0:13</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/qouYI9WCLOY" target="_blank" rel="noopener noreferrer">Razia rutin sebelum berangkat kerja😄 #tni #shorts #youtube #trending</a>
+            <div class="channel">HANTURIMBA2024</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 4.2만</span><span>좋아요 260</span><span>댓글 8</span></div>
+            <div class="pub">업로드: 2026-07-04</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=qouYI9WCLOY" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/qouYI9WCLOY" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/FTsJu2uksSo" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/FTsJu2uksSo/maxresdefault.jpg" alt="Babi di China Ini Rutin Olahraga 3 Kali Seminggu⁉️ #shorts #faktaunik 썸네일" loading="lazy" />
+            <span class="rank">#10</span>
+            <span class="duration">1:05</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/FTsJu2uksSo" target="_blank" rel="noopener noreferrer">Babi di China Ini Rutin Olahraga 3 Kali Seminggu⁉️ #shorts #faktaunik</a>
+            <div class="channel">FANTASY</div>
+            <div class="meta"><span>교육</span><span>조회 4.8만</span><span>좋아요 661</span><span>댓글 23</span></div>
+            <div class="pub">업로드: 2026-06-26</div>
+            <div class="query">매칭 키워드: 루틴 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=FTsJu2uksSo" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/FTsJu2uksSo" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div>
+    </section>
+    <section>
+      <h2>정보전달/저장각</h2>
+      <p class="note">최근 14일 · 한국 · 3분 이하 Shorts 후보 · 조회/참여/신선도 기반 자체 랭킹</p>
+      <div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/NZnZ3xz8tVk/maxresdefault.jpg" alt="내 숨은 돈 찾기부터 일상 꿀팁까지! 당장 저장해야 할 필수 번호 썸네일" loading="lazy" />
+            <span class="rank">#1</span>
+            <span class="duration">0:08</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">내 숨은 돈 찾기부터 일상 꿀팁까지! 당장 저장해야 할 필수 번호</a>
+            <div class="channel">인생공구함🔧</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 19.9만</span><span>좋아요 1,009</span><span>댓글 3</span></div>
+            <div class="pub">업로드: 2026-06-29</div>
+            <div class="query">매칭 키워드: 숨은 돈 찾기 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/NZnZ3xz8tVk" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/TK0dNqbcFHk" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/TK0dNqbcFHk/maxresdefault.jpg" alt="나이들수록 개인정보 이것만은 절대 금지 #개인정보보호 #보이스피싱예방 #시니어 썸네일" loading="lazy" />
+            <span class="rank">#2</span>
+            <span class="duration">0:06</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/TK0dNqbcFHk" target="_blank" rel="noopener noreferrer">나이들수록 개인정보 이것만은 절대 금지 #개인정보보호 #보이스피싱예방 #시니어</a>
+            <div class="channel">지혜로운 위로와 명상</div>
+            <div class="meta"><span>교육</span><span>조회 4.5만</span><span>좋아요 129</span><span>댓글 0</span></div>
+            <div class="pub">업로드: 2026-06-28</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=TK0dNqbcFHk" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/TK0dNqbcFHk" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/is2bjegydxQ" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/is2bjegydxQ/maxresdefault.jpg" alt="7월 6일 주역의 지혜 #youtube #shorts #건강 썸네일" loading="lazy" />
+            <span class="rank">#3</span>
+            <span class="duration">0:13</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/is2bjegydxQ" target="_blank" rel="noopener noreferrer">7월 6일 주역의 지혜 #youtube #shorts #건강</a>
+            <div class="channel">건강과 생활정보 | 시간 모자이크</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 2.0만</span><span>좋아요 138</span><span>댓글 1</span></div>
+            <div class="pub">업로드: 2026-07-05</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=is2bjegydxQ" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/is2bjegydxQ" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/WUumQ2Kscpg" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/WUumQ2Kscpg/maxresdefault.jpg" alt="&quot;이 벌레, 그냥 지나가질 않는다&quot; #빈대 #침대벌레 #해충 #생활정보 #위생 #청소 #상황극 #쇼츠 #애니 #만화 썸네일" loading="lazy" />
+            <span class="rank">#4</span>
+            <span class="duration">0:43</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/WUumQ2Kscpg" target="_blank" rel="noopener noreferrer">&quot;이 벌레, 그냥 지나가질 않는다&quot; #빈대 #침대벌레 #해충 #생활정보 #위생 #청소 #상황극 #쇼츠 #애니 #만화</a>
+            <div class="channel">만화잡학소</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 1.2만</span><span>좋아요 267</span><span>댓글 1</span></div>
+            <div class="pub">업로드: 2026-07-05</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=WUumQ2Kscpg" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/WUumQ2Kscpg" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/Gbj8a_ylb1M" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/Gbj8a_ylb1M/maxresdefault.jpg" alt="습관 하나가 화장실을 세균실로 만든다 #화장실 #생활정보 #화장실청소 썸네일" loading="lazy" />
+            <span class="rank">#5</span>
+            <span class="duration">0:06</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/Gbj8a_ylb1M" target="_blank" rel="noopener noreferrer">습관 하나가 화장실을 세균실로 만든다 #화장실 #생활정보 #화장실청소</a>
+            <div class="channel">지혜로운 위로와 명상</div>
+            <div class="meta"><span>교육</span><span>조회 2.1만</span><span>좋아요 52</span><span>댓글 0</span></div>
+            <div class="pub">업로드: 2026-07-03</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=Gbj8a_ylb1M" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/Gbj8a_ylb1M" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/38Cmxx5uuVo" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/38Cmxx5uuVo/maxresdefault.jpg" alt="스테인리스 새 그릇 그냥 쓰면 큰일 납니다 #스테인리스 #주방관리 #생활정보 썸네일" loading="lazy" />
+            <span class="rank">#6</span>
+            <span class="duration">0:06</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/38Cmxx5uuVo" target="_blank" rel="noopener noreferrer">스테인리스 새 그릇 그냥 쓰면 큰일 납니다 #스테인리스 #주방관리 #생활정보</a>
+            <div class="channel">지혜로운 위로와 명상</div>
+            <div class="meta"><span>교육</span><span>조회 1.2만</span><span>좋아요 11</span><span>댓글 2</span></div>
+            <div class="pub">업로드: 2026-07-06</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=38Cmxx5uuVo" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/38Cmxx5uuVo" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/ZbP3HTJnDfg" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/ZbP3HTJnDfg/maxresdefault.jpg" alt="알아두면 평생 써먹는 생활 응급 대처법! #생활정보 #추천 #꿀팁 #shorts #fyp 썸네일" loading="lazy" />
+            <span class="rank">#7</span>
+            <span class="duration">0:32</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/ZbP3HTJnDfg" target="_blank" rel="noopener noreferrer">알아두면 평생 써먹는 생활 응급 대처법! #생활정보 #추천 #꿀팁 #shorts #fyp</a>
+            <div class="channel">건강팡</div>
+            <div class="meta"><span>노하우/스타일</span><span>조회 2.5만</span><span>좋아요 205</span><span>댓글 2</span></div>
+            <div class="pub">업로드: 2026-06-25</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=ZbP3HTJnDfg" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/ZbP3HTJnDfg" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/cpmmh_RrTWM" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/cpmmh_RrTWM/maxresdefault.jpg" alt="7월 7일 주역의 지혜 #youtube #shorts #건강 썸네일" loading="lazy" />
+            <span class="rank">#8</span>
+            <span class="duration">0:13</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/cpmmh_RrTWM" target="_blank" rel="noopener noreferrer">7월 7일 주역의 지혜 #youtube #shorts #건강</a>
+            <div class="channel">건강과 생활정보 | 시간 모자이크</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 7,077</span><span>좋아요 74</span><span>댓글 1</span></div>
+            <div class="pub">업로드: 2026-07-06</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=cpmmh_RrTWM" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/cpmmh_RrTWM" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/_dAVuxj2dMo" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/_dAVuxj2dMo/maxresdefault.jpg" alt="이 꿀팁, 알고 계셨나요? 바지가 훨씬 더 예뻐집니다! #shorts #생활꿀팁 #일상꿀팁 #꿀팁 #생활정보 썸네일" loading="lazy" />
+            <span class="rank">#9</span>
+            <span class="duration">1:01</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/_dAVuxj2dMo" target="_blank" rel="noopener noreferrer">이 꿀팁, 알고 계셨나요? 바지가 훨씬 더 예뻐집니다! #shorts #생활꿀팁 #일상꿀팁 #꿀팁 #생활정보</a>
+            <div class="channel">하루늘</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 1.4만</span><span>좋아요 139</span><span>댓글 0</span></div>
+            <div class="pub">업로드: 2026-06-28</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=_dAVuxj2dMo" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/_dAVuxj2dMo" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/JvjVahsqTWI" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/JvjVahsqTWI/maxresdefault.jpg" alt="수박을 박살낸 뒤 벌어진 놀라운 일#수박 #정보쇼츠 #Shorts#어획#낚시 썸네일" loading="lazy" />
+            <span class="rank">#10</span>
+            <span class="duration">0:33</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/JvjVahsqTWI" target="_blank" rel="noopener noreferrer">수박을 박살낸 뒤 벌어진 놀라운 일#수박 #정보쇼츠 #Shorts#어획#낚시</a>
+            <div class="channel">지식애옹</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 4,430</span><span>좋아요 20</span><span>댓글 13</span></div>
+            <div class="pub">업로드: 2026-07-07</div>
+            <div class="query">매칭 키워드: 생활 정보 shorts</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=JvjVahsqTWI" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/JvjVahsqTWI" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div>
+    </section></main>
+<footer><b>분류 기준</b><br/>최근 14일 한국 검색 결과 · videoDuration=short · 2024-10-15 이후 업로드 · 180초 이하. YouTube Data API는 공식 Shorts 여부/세로형 여부를 직접 제공하지 않으므로 “Shorts 후보”로 표기합니다. 랭킹은 조회수, 좋아요, 댓글, 업로드 신선도를 조합한 자체 점수입니다.</footer>
+</body></html>

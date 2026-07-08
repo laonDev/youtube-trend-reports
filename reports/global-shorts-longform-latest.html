@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>YouTube 트렌드 리포트 — Shorts / Long-form 분리</title>
+<style>
+:root { --bg:#0b1020; --panel:#121a33; --card:#18213d; --muted:#9fb0d0; --text:#eef4ff; --accent:#ff3158; --accent2:#63e6be; --line:#293554; }
+* { box-sizing:border-box }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,sans-serif; background:linear-gradient(180deg,#090d1a,#101833 45%,#0b1020); color:var(--text); }
+a { color:inherit }
+header { padding:42px 24px 22px; max-width:1180px; margin:0 auto; }
+.badge { display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border:1px solid var(--line); border-radius:999px; color:var(--muted); background:rgba(255,255,255,.03); font-size:13px; }
+h1 { font-size:clamp(28px,5vw,52px); line-height:1.05; margin:18px 0 12px; letter-spacing:-.04em; }
+.lead { color:var(--muted); font-size:16px; line-height:1.7; max-width:900px; }
+main { max-width:1180px; margin:0 auto; padding:0 24px 48px; }
+.summary { width:100%; border-collapse:collapse; overflow:hidden; border-radius:16px; background:var(--panel); border:1px solid var(--line); margin:22px 0 34px; }
+.summary th,.summary td { padding:14px 16px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+.summary th { color:#cfe0ff; background:rgba(255,255,255,.04); font-size:13px; }
+.summary td { color:var(--muted); font-size:14px; }
+.region { margin:34px 0 54px; }
+h2 { font-size:32px; margin:0 0 14px; letter-spacing:-.03em; }
+h3 { font-size:22px; margin:32px 0 8px; }
+.note { color:var(--muted); margin:0 0 16px; line-height:1.6; }
+.stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:14px 0 10px; }
+.stats div { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px; }
+.stats b { display:block; font-size:30px; color:var(--accent2); }
+.stats span { color:var(--muted); font-size:13px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:16px; }
+.card { background:rgba(24,33,61,.94); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,.22); }
+.thumb { display:block; position:relative; aspect-ratio:16/9; background:#050814; overflow:hidden; text-decoration:none; }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .18s ease, opacity .18s ease; }
+.thumb:hover img { transform:scale(1.04); opacity:.88; }
+.duration,.rank { position:absolute; padding:5px 8px; border-radius:999px; background:rgba(0,0,0,.76); font-size:12px; font-weight:700; }
+.duration { right:9px; bottom:9px; }
+.rank { left:9px; top:9px; color:#fff; background:rgba(255,49,88,.9); }
+.body { padding:14px; }
+.title { display:block; font-weight:800; line-height:1.35; text-decoration:none; letter-spacing:-.02em; min-height:2.7em; }
+.title:hover { color:#ffd3dc; text-decoration:underline; }
+.channel { color:#d6e0f5; margin-top:10px; font-size:14px; }
+.meta { display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
+.meta span { color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:4px 8px; font-size:12px; background:rgba(255,255,255,.03); }
+.pub { color:var(--muted); font-size:12px; margin-top:10px; line-height:1.5; }
+.links { display:flex; gap:10px; margin-top:12px; }
+.links a { color:#9ee8ff; font-size:12px; text-decoration:none; }
+.links a:hover { text-decoration:underline; }
+.empty { color:var(--muted); background:var(--panel); border:1px dashed var(--line); padding:18px; border-radius:16px; }
+footer { color:var(--muted); border-top:1px solid var(--line); padding:24px; max-width:1180px; margin:0 auto; line-height:1.6; }
+@media (max-width:720px) { .stats { grid-template-columns:1fr; } .summary { display:block; overflow-x:auto; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="badge">YouTube Data API v3 · chart=mostPopular · 조회 2026-07-08 22:05:14 KST</div>
+  <h1>YouTube 트렌드 리포트<br/>Shorts 후보 / Long-form 분리</h1>
+  <p class="lead">국가별 공식 인기 영상 차트를 가져온 뒤, 최근 YouTube Shorts 3분 기준을 반영해 숏폼 후보와 롱폼을 분리했습니다. 썸네일·제목·링크를 클릭하면 YouTube에서 영상을 확인할 수 있습니다.</p>
+</header>
+<main>
+<table class="summary">
+<thead><tr><th>지역</th><th>수집 수</th><th>Shorts 후보</th><th>롱폼</th><th>주요 카테고리</th></tr></thead>
+<tbody><tr><td>한국(KR)</td><td>50</td><td>10</td><td>40</td><td>게임 20, 음악 20, 영화/애니메이션 5, 엔터테인먼트 4</td></tr><tr><td>미국(US)</td><td>49</td><td>12</td><td>37</td><td>게임 19, 음악 17, 영화/애니메이션 5, 엔터테인먼트 5</td></tr></tbody>
+</table>
+
+    <section class="region" id="KR">
+      <h2>한국 (KR)</h2>
+      <div class="stats">
+        <div><b>50</b><span>API 인기 영상</span></div>
+        <div><b>10</b><span>Shorts 후보</span></div>
+        <div><b>40</b><span>롱폼</span></div>
+      </div>
+      <h3>Shorts / 숏폼 후보</h3>
+      <p class="note">기준: 업로드일 2024-10-15 이후 + 길이 3분 이하. API에서 세로/정사각형 여부는 직접 제공하지 않으므로 “공식 Shorts 확정”이 아닌 후보로 표기합니다.</p>
+      <div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/DrNM5QhAr_M" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/DrNM5QhAr_M/maxresdefault.jpg" alt="[호프] 인터내셔널 메인 예고편 썸네일" loading="lazy" />
+            <span class="duration">1:46</span>
+            <span class="rank">#2</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/DrNM5QhAr_M" target="_blank" rel="noopener noreferrer">[호프] 인터내셔널 메인 예고편</a>
+            <div class="channel">플러스엠 엔터테인먼트</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 130.1만</span><span>좋아요 9,669</span><span>댓글 3,619</span></div>
+            <div class="pub">업로드: 2026-07-06 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=DrNM5QhAr_M" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/DrNM5QhAr_M" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/FFjDEkZg-54" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/FFjDEkZg-54/maxresdefault.jpg" alt="i-dle (아이들) &#x27;Gimme Dat Love&#x27; Official Music Video 썸네일" loading="lazy" />
+            <span class="duration">2:47</span>
+            <span class="rank">#4</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/FFjDEkZg-54" target="_blank" rel="noopener noreferrer">i-dle (아이들) &#x27;Gimme Dat Love&#x27; Official Music Video</a>
+            <div class="channel">i-dle (아이들)</div>
+            <div class="meta"><span>음악</span><span>조회 424.3만</span><span>좋아요 16.5만</span><span>댓글 1.1만</span></div>
+            <div class="pub">업로드: 2026-07-06 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=FFjDEkZg-54" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/FFjDEkZg-54" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/s5iZnQvsus4" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/s5iZnQvsus4/maxresdefault.jpg" alt="Hurdle (Art. Kyoeun) 썸네일" loading="lazy" />
+            <span class="duration">2:43</span>
+            <span class="rank">#10</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/s5iZnQvsus4" target="_blank" rel="noopener noreferrer">Hurdle (Art. Kyoeun)</a>
+            <div class="channel">Anonymous Artists - Topic</div>
+            <div class="meta"><span>음악</span><span>조회 8.8만</span><span>좋아요 1,121</span><span>댓글 33</span></div>
+            <div class="pub">업로드: 2026-07-05 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=s5iZnQvsus4" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/s5iZnQvsus4" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/w_c-iRTVs2Q" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/w_c-iRTVs2Q/maxresdefault.jpg" alt="[Official Performance] cosmosy &#x27;Paradise ~ I need you ~&#x27; 😈✨ 썸네일" loading="lazy" />
+            <span class="duration">2:54</span>
+            <span class="rank">#13</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/w_c-iRTVs2Q" target="_blank" rel="noopener noreferrer">[Official Performance] cosmosy &#x27;Paradise ~ I need you ~&#x27; 😈✨</a>
+            <div class="channel">cosmosy_yt</div>
+            <div class="meta"><span>음악</span><span>조회 21.7만</span><span>좋아요 1,054</span><span>댓글 94</span></div>
+            <div class="pub">업로드: 2026-07-03 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=w_c-iRTVs2Q" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/w_c-iRTVs2Q" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/dC_HaATa19w" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/dC_HaATa19w/maxresdefault.jpg" alt="킬러들의 쇼핑몰 시즌2 | 메인 예고편 | 디즈니+ 썸네일" loading="lazy" />
+            <span class="duration">2:07</span>
+            <span class="rank">#14</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/dC_HaATa19w" target="_blank" rel="noopener noreferrer">킬러들의 쇼핑몰 시즌2 | 메인 예고편 | 디즈니+</a>
+            <div class="channel">Disney Plus Korea 디즈니 플러스 코리아</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 41.0만</span><span>좋아요 3,074</span><span>댓글 424</span></div>
+            <div class="pub">업로드: 2026-07-06 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=dC_HaATa19w" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/dC_HaATa19w" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/_yBqV9UHFFc" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/_yBqV9UHFFc/maxresdefault.jpg" alt="[5회 예고] “민지가 살아있었어” 소지섭, 딸 서수민이 남기고 떠난 흔적에 비장한 결심! 썸네일" loading="lazy" />
+            <span class="duration">0:35</span>
+            <span class="rank">#17</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/_yBqV9UHFFc" target="_blank" rel="noopener noreferrer">[5회 예고] “민지가 살아있었어” 소지섭, 딸 서수민이 남기고 떠난 흔적에 비장한 결심!</a>
+            <div class="channel">SBS 스브스 Drama</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 17.2만</span><span>좋아요 757</span><span>댓글 155</span></div>
+            <div class="pub">업로드: 2026-07-04 · 인기 차트 상위권</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=_yBqV9UHFFc" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/_yBqV9UHFFc" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/pN_Z07TYkEA" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/pN_Z07TYkEA/maxresdefault.jpg" alt="So Good 썸네일" loading="lazy" />
+            <span class="duration">2:35</span>
+            <span class="rank">#22</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/pN_Z07TYkEA" target="_blank" rel="noopener noreferrer">So Good</a>
+            <div class="channel">KIHYUN - Topic</div>
+            <div class="meta"><span>음악</span><span>조회 3.0만</span><span>좋아요 353</span><span>댓글 0</span></div>
+            <div class="pub">업로드: 2026-07-07 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=pN_Z07TYkEA" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/pN_Z07TYkEA" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/0oHBBc18sEo" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/0oHBBc18sEo/maxresdefault.jpg" alt="SPORT 썸네일" loading="lazy" />
+            <span class="duration">1:53</span>
+            <span class="rank">#28</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/0oHBBc18sEo" target="_blank" rel="noopener noreferrer">SPORT</a>
+            <div class="channel">Olszakumpel - Topic</div>
+            <div class="meta"><span>음악</span><span>조회 8.9만</span><span>좋아요 73</span><span>댓글 14</span></div>
+            <div class="pub">업로드: 2026-06-25 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=0oHBBc18sEo" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/0oHBBc18sEo" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/4k64rp8KJAk" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/4k64rp8KJAk/maxresdefault.jpg" alt="KIHYUN 기현 &#x27;So Good&#x27; MV 썸네일" loading="lazy" />
+            <span class="duration">2:51</span>
+            <span class="rank">#46</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/4k64rp8KJAk" target="_blank" rel="noopener noreferrer">KIHYUN 기현 &#x27;So Good&#x27; MV</a>
+            <div class="channel">STARSHIP</div>
+            <div class="meta"><span>음악</span><span>조회 91.9만</span><span>좋아요 1.3만</span><span>댓글 1,616</span></div>
+            <div class="pub">업로드: 2026-07-07 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=4k64rp8KJAk" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/4k64rp8KJAk" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/ltZuC48-PuQ" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/ltZuC48-PuQ/maxresdefault.jpg" alt="𝗩𝗘𝗥𝗡𝗢𝗡 &#x27;미아&#x27; Official Film 썸네일" loading="lazy" />
+            <span class="duration">2:58</span>
+            <span class="rank">#48</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/ltZuC48-PuQ" target="_blank" rel="noopener noreferrer">𝗩𝗘𝗥𝗡𝗢𝗡 &#x27;미아&#x27; Official Film</a>
+            <div class="channel">HYBE LABELS</div>
+            <div class="meta"><span>음악</span><span>조회 7.4만</span><span>좋아요 2.2만</span><span>댓글 1,920</span></div>
+            <div class="pub">업로드: 2026-07-08 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=ltZuC48-PuQ" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/ltZuC48-PuQ" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div>
+      <h3>Long-form / 롱폼</h3>
+      <p class="note">기준: 길이 3분 초과. 썸네일 또는 제목을 클릭하면 YouTube 영상 페이지로 이동합니다.</p>
+      <div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=qZlu2j2SiBA" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/qZlu2j2SiBA/maxresdefault.jpg" alt="RESCENE (리센느) &#x27;Pretty Girl&#x27; Special Video 썸네일" loading="lazy" />
+            <span class="duration">3:34</span>
+            <span class="rank">#1</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=qZlu2j2SiBA" target="_blank" rel="noopener noreferrer">RESCENE (리센느) &#x27;Pretty Girl&#x27; Special Video</a>
+            <div class="channel">RESCENE</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 45.1만</span><span>좋아요 8.0만</span><span>댓글 1.0만</span></div>
+            <div class="pub">업로드: 2026-07-08 · 인기 차트 상위권</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=qZlu2j2SiBA" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/qZlu2j2SiBA" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=n8TK7dLaTIo" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/n8TK7dLaTIo/maxresdefault.jpg" alt="LYON vs TSW - G2 vs T1 | 브래킷 스테이지 패자조 2라운드 | MSI 2026 썸네일" loading="lazy" />
+            <span class="duration">7:45:33</span>
+            <span class="rank">#3</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=n8TK7dLaTIo" target="_blank" rel="noopener noreferrer">LYON vs TSW - G2 vs T1 | 브래킷 스테이지 패자조 2라운드 | MSI 2026</a>
+            <div class="channel">LCK</div>
+            <div class="meta"><span>게임</span><span>조회 228.7만</span><span>좋아요 -</span><span>댓글 116</span></div>
+            <div class="pub">업로드: 2026-07-08 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=n8TK7dLaTIo" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/n8TK7dLaTIo" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=iyowqc-ioYk" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/iyowqc-ioYk/maxresdefault.jpg" alt="와.. 드디어 떴습니다.. ≪호프≫ 메인 예고편 떡밥 &amp; 분석 총정리 썸네일" loading="lazy" />
+            <span class="duration">10:18</span>
+            <span class="rank">#5</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=iyowqc-ioYk" target="_blank" rel="noopener noreferrer">와.. 드디어 떴습니다.. ≪호프≫ 메인 예고편 떡밥 &amp; 분석 총정리</a>
+            <div class="channel">무비띵크_Movie Think</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 43.3만</span><span>좋아요 4,579</span><span>댓글 1,756</span></div>
+            <div class="pub">업로드: 2026-07-06 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=iyowqc-ioYk" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/iyowqc-ioYk" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=bfsLRivAWIQ" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/bfsLRivAWIQ/maxresdefault.jpg" alt="로크 장인입니다 썸네일" loading="lazy" />
+            <span class="duration">23:22</span>
+            <span class="rank">#6</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=bfsLRivAWIQ" target="_blank" rel="noopener noreferrer">로크 장인입니다</a>
+            <div class="channel">PAKA</div>
+            <div class="meta"><span>게임</span><span>조회 34.0만</span><span>좋아요 2,262</span><span>댓글 300</span></div>
+            <div class="pub">업로드: 2026-07-07 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=bfsLRivAWIQ" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/bfsLRivAWIQ" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=VhmQ1GL66GI" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/VhmQ1GL66GI/maxresdefault.jpg" alt="[성시경 노래] 68. 나와 같다면 (With.김장훈) l Sung Si Kyung Music 썸네일" loading="lazy" />
+            <span class="duration">7:16</span>
+            <span class="rank">#7</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=VhmQ1GL66GI" target="_blank" rel="noopener noreferrer">[성시경 노래] 68. 나와 같다면 (With.김장훈) l Sung Si Kyung Music</a>
+            <div class="channel">성시경 SUNG SI KYUNG</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 45.1만</span><span>좋아요 2.0만</span><span>댓글 3,183</span></div>
+            <div class="pub">업로드: 2026-07-06 · 인기 차트 상위권</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=VhmQ1GL66GI" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/VhmQ1GL66GI" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=hQUVIT8m-c0" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/hQUVIT8m-c0/maxresdefault.jpg" alt="Stray Kids &quot;THIS &amp; THAT&quot; Trailer 썸네일" loading="lazy" />
+            <span class="duration">3:04</span>
+            <span class="rank">#8</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=hQUVIT8m-c0" target="_blank" rel="noopener noreferrer">Stray Kids &quot;THIS &amp; THAT&quot; Trailer</a>
+            <div class="channel">JYP Entertainment</div>
+            <div class="meta"><span>음악</span><span>조회 155.7만</span><span>좋아요 33.3만</span><span>댓글 2.3만</span></div>
+            <div class="pub">업로드: 2026-07-07 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=hQUVIT8m-c0" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/hQUVIT8m-c0" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=e1nofle7XAQ" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/e1nofle7XAQ/maxresdefault.jpg" alt="마크 고인물도 찾기 힘든 레전드 숨바꼭질 ㅋㅋㅋ *메챠 카멜레온* 썸네일" loading="lazy" />
+            <span class="duration">35:06</span>
+            <span class="rank">#9</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=e1nofle7XAQ" target="_blank" rel="noopener noreferrer">마크 고인물도 찾기 힘든 레전드 숨바꼭질 ㅋㅋㅋ *메챠 카멜레온*</a>
+            <div class="channel">잠뜰 TV</div>
+            <div class="meta"><span>게임</span><span>조회 8.2만</span><span>좋아요 6,947</span><span>댓글 454</span></div>
+            <div class="pub">업로드: 2026-07-08 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=e1nofle7XAQ" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/e1nofle7XAQ" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=g4BhrY6o9kg" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/g4BhrY6o9kg/maxresdefault.jpg" alt="《호프》 메인 예고편 드디어 떴다!!🔥 마이클 패스벤더 외계인 얼굴 최초공개ㄷㄷ 황정민, 조인성 VS 외계인 액션씬 대거 공개.. 썸네일" loading="lazy" />
+            <span class="duration">9:18</span>
+            <span class="rank">#11</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=g4BhrY6o9kg" target="_blank" rel="noopener noreferrer">《호프》 메인 예고편 드디어 떴다!!🔥 마이클 패스벤더 외계인 얼굴 최초공개ㄷㄷ 황정민, 조인성 VS 외계인 액션씬 대거 공개..</a>
+            <div class="channel">엘플릭스 [LPLIX]</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 18.5만</span><span>좋아요 1,638</span><span>댓글 322</span></div>
+            <div class="pub">업로드: 2026-07-06 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=g4BhrY6o9kg" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/g4BhrY6o9kg" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=b8mjPaT0UZY" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/b8mjPaT0UZY/maxresdefault.jpg" alt="레전드 운빨로 전설의 포켓몬 잡았습니다 썸네일" loading="lazy" />
+            <span class="duration">33:26</span>
+            <span class="rank">#12</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=b8mjPaT0UZY" target="_blank" rel="noopener noreferrer">레전드 운빨로 전설의 포켓몬 잡았습니다</a>
+            <div class="channel">말왕TV</div>
+            <div class="meta"><span>게임</span><span>조회 34.5만</span><span>좋아요 4,273</span><span>댓글 362</span></div>
+            <div class="pub">업로드: 2026-07-07 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=b8mjPaT0UZY" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/b8mjPaT0UZY" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=DhAe4nOm5Lg" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/DhAe4nOm5Lg/maxresdefault.jpg" alt="고진감래 모다피 : 불꽃타입 하트골드【포켓몬 모든타입 깨기】#10 썸네일" loading="lazy" />
+            <span class="duration">21:34</span>
+            <span class="rank">#15</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=DhAe4nOm5Lg" target="_blank" rel="noopener noreferrer">고진감래 모다피 : 불꽃타입 하트골드【포켓몬 모든타입 깨기】#10</a>
+            <div class="channel">근가놈</div>
+            <div class="meta"><span>게임</span><span>조회 6.6만</span><span>좋아요 1,976</span><span>댓글 296</span></div>
+            <div class="pub">업로드: 2026-07-08 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=DhAe4nOm5Lg" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/DhAe4nOm5Lg" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=_ZiHSxR318A" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/_ZiHSxR318A/maxresdefault.jpg" alt="Beautiful Moment 썸네일" loading="lazy" />
+            <span class="duration">3:27</span>
+            <span class="rank">#16</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=_ZiHSxR318A" target="_blank" rel="noopener noreferrer">Beautiful Moment</a>
+            <div class="channel">L - Topic</div>
+            <div class="meta"><span>음악</span><span>조회 3.4만</span><span>좋아요 533</span><span>댓글 81</span></div>
+            <div class="pub">업로드: 2026-07-04 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=_ZiHSxR318A" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/_ZiHSxR318A" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=843S79Uv4lU" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/843S79Uv4lU/maxresdefault.jpg" alt="그림 숨바꼭질 헌터는 완전히 멘탈이 나가버렸습니다 썸네일" loading="lazy" />
+            <span class="duration">13:27</span>
+            <span class="rank">#18</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=843S79Uv4lU" target="_blank" rel="noopener noreferrer">그림 숨바꼭질 헌터는 완전히 멘탈이 나가버렸습니다</a>
+            <div class="channel">우주하마</div>
+            <div class="meta"><span>게임</span><span>조회 12.6만</span><span>좋아요 2,805</span><span>댓글 188</span></div>
+            <div class="pub">업로드: 2026-07-08 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=843S79Uv4lU" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/843S79Uv4lU" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div>
+    </section>
+    <section class="region" id="US">
+      <h2>미국 (US)</h2>
+      <div class="stats">
+        <div><b>49</b><span>API 인기 영상</span></div>
+        <div><b>12</b><span>Shorts 후보</span></div>
+        <div><b>37</b><span>롱폼</span></div>
+      </div>
+      <h3>Shorts / 숏폼 후보</h3>
+      <p class="note">기준: 업로드일 2024-10-15 이후 + 길이 3분 이하. API에서 세로/정사각형 여부는 직접 제공하지 않으므로 “공식 Shorts 확정”이 아닌 후보로 표기합니다.</p>
+      <div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/7b20GRFZBFE" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/7b20GRFZBFE/maxresdefault.jpg" alt="Avatar Aang: The Last Airbender | Official Movie Trailer | Paramount+ | Avatar 썸네일" loading="lazy" />
+            <span class="duration">2:25</span>
+            <span class="rank">#2</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/7b20GRFZBFE" target="_blank" rel="noopener noreferrer">Avatar Aang: The Last Airbender | Official Movie Trailer | Paramount+ | Avatar</a>
+            <div class="channel">Avatar Legends</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 241.4만</span><span>좋아요 13.8만</span><span>댓글 1.5만</span></div>
+            <div class="pub">업로드: 2026-07-07 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=7b20GRFZBFE" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/7b20GRFZBFE" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/5_6GRFK13vc" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/5_6GRFK13vc/maxresdefault.jpg" alt="Apex Legends x Cyberpunk Event Trailer 썸네일" loading="lazy" />
+            <span class="duration">1:33</span>
+            <span class="rank">#8</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/5_6GRFK13vc" target="_blank" rel="noopener noreferrer">Apex Legends x Cyberpunk Event Trailer</a>
+            <div class="channel">Apex Legends</div>
+            <div class="meta"><span>게임</span><span>조회 57.9만</span><span>좋아요 2.4만</span><span>댓글 1,727</span></div>
+            <div class="pub">업로드: 2026-07-07 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=5_6GRFK13vc" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/5_6GRFK13vc" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/FRspkI7w-rU" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/FRspkI7w-rU/maxresdefault.jpg" alt="Dominic Fike - Babydoll (Lyrics) 썸네일" loading="lazy" />
+            <span class="duration">1:39</span>
+            <span class="rank">#10</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/FRspkI7w-rU" target="_blank" rel="noopener noreferrer">Dominic Fike - Babydoll (Lyrics)</a>
+            <div class="channel">7clouds Trap</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 24.1만</span><span>좋아요 1,595</span><span>댓글 17</span></div>
+            <div class="pub">업로드: 2026-07-07 · 인기 차트 상위권</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=FRspkI7w-rU" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/FRspkI7w-rU" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/rSkzBLfji_o" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/rSkzBLfji_o/maxresdefault.jpg" alt="LEGEND OF THE WHITE DRAGON Official Trailer (2026) 썸네일" loading="lazy" />
+            <span class="duration">1:58</span>
+            <span class="rank">#16</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/rSkzBLfji_o" target="_blank" rel="noopener noreferrer">LEGEND OF THE WHITE DRAGON Official Trailer (2026)</a>
+            <div class="channel">Movie Trailers Source</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 7.2만</span><span>좋아요 1,038</span><span>댓글 128</span></div>
+            <div class="pub">업로드: 2026-07-07 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=rSkzBLfji_o" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/rSkzBLfji_o" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/HbRJ0K69XOw" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/HbRJ0K69XOw/maxresdefault.jpg" alt="YTB Fatt - &quot;I Gotcha Bitch&quot; (feat. FoxBD) (Official Music Video) 썸네일" loading="lazy" />
+            <span class="duration">1:38</span>
+            <span class="rank">#21</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/HbRJ0K69XOw" target="_blank" rel="noopener noreferrer">YTB Fatt - &quot;I Gotcha Bitch&quot; (feat. FoxBD) (Official Music Video)</a>
+            <div class="channel">YTB Fatt </div>
+            <div class="meta"><span>음악</span><span>조회 9.9만</span><span>좋아요 5,269</span><span>댓글 215</span></div>
+            <div class="pub">업로드: 2026-07-06 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=HbRJ0K69XOw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/HbRJ0K69XOw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/TJ5bCaaGIx4" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/TJ5bCaaGIx4/maxresdefault.jpg" alt="LEGEND OF THE WHITE DRAGON | Official Trailer | Starring Jason David Frank | In Theaters August 28 썸네일" loading="lazy" />
+            <span class="duration">1:45</span>
+            <span class="rank">#22</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/TJ5bCaaGIx4" target="_blank" rel="noopener noreferrer">LEGEND OF THE WHITE DRAGON | Official Trailer | Starring Jason David Frank | In Theaters August 28</a>
+            <div class="channel">Well Go USA Entertainment</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 23.7만</span><span>좋아요 7,481</span><span>댓글 606</span></div>
+            <div class="pub">업로드: 2026-07-07 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=TJ5bCaaGIx4" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/TJ5bCaaGIx4" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/FoTIgz94RnE" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/FoTIgz94RnE/maxresdefault.jpg" alt="Rolling loud 썸네일" loading="lazy" />
+            <span class="duration">1:52</span>
+            <span class="rank">#24</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/FoTIgz94RnE" target="_blank" rel="noopener noreferrer">Rolling loud</a>
+            <div class="channel">Blo - Topic</div>
+            <div class="meta"><span>음악</span><span>조회 9,179</span><span>좋아요 1,016</span><span>댓글 128</span></div>
+            <div class="pub">업로드: 2026-07-07 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=FoTIgz94RnE" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/FoTIgz94RnE" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/zrcg8YHSys8" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/zrcg8YHSys8/maxresdefault.jpg" alt="The Wrong Girls - Official Trailer - In Theaters August 14 썸네일" loading="lazy" />
+            <span class="duration">1:54</span>
+            <span class="rank">#25</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/zrcg8YHSys8" target="_blank" rel="noopener noreferrer">The Wrong Girls - Official Trailer - In Theaters August 14</a>
+            <div class="channel">NEON</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 14.0만</span><span>좋아요 2,144</span><span>댓글 123</span></div>
+            <div class="pub">업로드: 2026-07-07 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=zrcg8YHSys8" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/zrcg8YHSys8" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/ykVpDClBL6U" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/ykVpDClBL6U/maxresdefault.jpg" alt="Screwly G - &quot;Brag Different&quot; (Official Video) 썸네일" loading="lazy" />
+            <span class="duration">2:58</span>
+            <span class="rank">#30</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/ykVpDClBL6U" target="_blank" rel="noopener noreferrer">Screwly G - &quot;Brag Different&quot; (Official Video)</a>
+            <div class="channel">Screwly G</div>
+            <div class="meta"><span>음악</span><span>조회 14.5만</span><span>좋아요 1.2만</span><span>댓글 598</span></div>
+            <div class="pub">업로드: 2026-07-06 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=ykVpDClBL6U" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/ykVpDClBL6U" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/qm-PtXQOL-E" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/qm-PtXQOL-E/sddefault.jpg" alt="Malie Donn - Opps Song (Official Music Video) 썸네일" loading="lazy" />
+            <span class="duration">2:24</span>
+            <span class="rank">#33</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/qm-PtXQOL-E" target="_blank" rel="noopener noreferrer">Malie Donn - Opps Song (Official Music Video)</a>
+            <div class="channel">Malie Donn </div>
+            <div class="meta"><span>음악</span><span>조회 24.1만</span><span>좋아요 1.6만</span><span>댓글 1,977</span></div>
+            <div class="pub">업로드: 2026-07-07 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=qm-PtXQOL-E" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/qm-PtXQOL-E" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/OfsgDuvv_t0" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/OfsgDuvv_t0/maxresdefault.jpg" alt="Dinosaurs of the Wild West | Official Kickstarter Trailer (4K) 썸네일" loading="lazy" />
+            <span class="duration">1:07</span>
+            <span class="rank">#34</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/OfsgDuvv_t0" target="_blank" rel="noopener noreferrer">Dinosaurs of the Wild West | Official Kickstarter Trailer (4K)</a>
+            <div class="channel">Sparke Films</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 14.7만</span><span>좋아요 1.1만</span><span>댓글 1,413</span></div>
+            <div class="pub">업로드: 2026-07-07 · 트레일러 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=OfsgDuvv_t0" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/OfsgDuvv_t0" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/shorts/C4U9pQVxyBg" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/C4U9pQVxyBg/maxresdefault.jpg" alt="Age of Umbra: Sallowlands | Official Trailer | A Daggerheart Miniseries 썸네일" loading="lazy" />
+            <span class="duration">1:41</span>
+            <span class="rank">#37</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/shorts/C4U9pQVxyBg" target="_blank" rel="noopener noreferrer">Age of Umbra: Sallowlands | Official Trailer | A Daggerheart Miniseries</a>
+            <div class="channel">Critical Role</div>
+            <div class="meta"><span>게임</span><span>조회 6.9만</span><span>좋아요 4,663</span><span>댓글 242</span></div>
+            <div class="pub">업로드: 2026-07-07 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=C4U9pQVxyBg" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/C4U9pQVxyBg" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div>
+      <h3>Long-form / 롱폼</h3>
+      <p class="note">기준: 길이 3분 초과. 썸네일 또는 제목을 클릭하면 YouTube 영상 페이지로 이동합니다.</p>
+      <div class="grid">
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=WbkQp_XEJbw" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/WbkQp_XEJbw/maxresdefault.jpg" alt="Em I Orait - Tonton Malele (feat. Jarahn &amp; Rich Antony) 썸네일" loading="lazy" />
+            <span class="duration">4:01</span>
+            <span class="rank">#1</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=WbkQp_XEJbw" target="_blank" rel="noopener noreferrer">Em I Orait - Tonton Malele (feat. Jarahn &amp; Rich Antony)</a>
+            <div class="channel">Tonton Malele</div>
+            <div class="meta"><span>음악</span><span>조회 6.5만</span><span>좋아요 2,496</span><span>댓글 219</span></div>
+            <div class="pub">업로드: 2026-07-02 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=WbkQp_XEJbw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/WbkQp_XEJbw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=L5y9R-7hHOw" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/L5y9R-7hHOw/maxresdefault.jpg" alt="New Rules, New Hero, New Rivals! | Marvel Rivals Season 9 Reveal Stream 썸네일" loading="lazy" />
+            <span class="duration">1:30:06</span>
+            <span class="rank">#3</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=L5y9R-7hHOw" target="_blank" rel="noopener noreferrer">New Rules, New Hero, New Rivals! | Marvel Rivals Season 9 Reveal Stream</a>
+            <div class="channel">Marvel Rivals</div>
+            <div class="meta"><span>게임</span><span>조회 112.9만</span><span>좋아요 4.6만</span><span>댓글 951</span></div>
+            <div class="pub">업로드: 2026-07-07 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=L5y9R-7hHOw" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/L5y9R-7hHOw" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=Qc_k5i7637I" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/Qc_k5i7637I/maxresdefault.jpg" alt="Tavile 썸네일" loading="lazy" />
+            <span class="duration">3:04</span>
+            <span class="rank">#4</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=Qc_k5i7637I" target="_blank" rel="noopener noreferrer">Tavile</a>
+            <div class="channel">Sean Rii - Topic</div>
+            <div class="meta"><span>음악</span><span>조회 6.3만</span><span>좋아요 2,535</span><span>댓글 140</span></div>
+            <div class="pub">업로드: 2026-07-02 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=Qc_k5i7637I" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/Qc_k5i7637I" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=hQUVIT8m-c0" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/hQUVIT8m-c0/maxresdefault.jpg" alt="Stray Kids &quot;THIS &amp; THAT&quot; Trailer 썸네일" loading="lazy" />
+            <span class="duration">3:04</span>
+            <span class="rank">#5</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=hQUVIT8m-c0" target="_blank" rel="noopener noreferrer">Stray Kids &quot;THIS &amp; THAT&quot; Trailer</a>
+            <div class="channel">JYP Entertainment</div>
+            <div class="meta"><span>음악</span><span>조회 155.7만</span><span>좋아요 33.3만</span><span>댓글 2.3만</span></div>
+            <div class="pub">업로드: 2026-07-07 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=hQUVIT8m-c0" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/hQUVIT8m-c0" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=MVD0xhgRdEc" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/MVD0xhgRdEc/maxresdefault.jpg" alt="The Most Annoying Rage Game In A While... [Fall Again] 썸네일" loading="lazy" />
+            <span class="duration">1:29:00</span>
+            <span class="rank">#6</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=MVD0xhgRdEc" target="_blank" rel="noopener noreferrer">The Most Annoying Rage Game In A While... [Fall Again]</a>
+            <div class="channel">Joe Bart Games</div>
+            <div class="meta"><span>게임</span><span>조회 62.5만</span><span>좋아요 1.6만</span><span>댓글 717</span></div>
+            <div class="pub">업로드: 2026-07-07 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=MVD0xhgRdEc" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/MVD0xhgRdEc" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=RMnIj8Wajo8" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/RMnIj8Wajo8/maxresdefault.jpg" alt="Show Me Love - Mal Meninga Kuri (KTP) 썸네일" loading="lazy" />
+            <span class="duration">3:35</span>
+            <span class="rank">#7</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=RMnIj8Wajo8" target="_blank" rel="noopener noreferrer">Show Me Love - Mal Meninga Kuri (KTP)</a>
+            <div class="channel">Mal Meninga Kuri </div>
+            <div class="meta"><span>음악</span><span>조회 1.7만</span><span>좋아요 1,630</span><span>댓글 224</span></div>
+            <div class="pub">업로드: 2026-07-06 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=RMnIj8Wajo8" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/RMnIj8Wajo8" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=viKFyeAcFuc" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/viKFyeAcFuc/maxresdefault.jpg" alt="G2 vs T1 | MSI 2026 |  Bracket Stage Day 5 썸네일" loading="lazy" />
+            <span class="duration">8:05:21</span>
+            <span class="rank">#9</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=viKFyeAcFuc" target="_blank" rel="noopener noreferrer">G2 vs T1 | MSI 2026 |  Bracket Stage Day 5</a>
+            <div class="channel">LoL Esports</div>
+            <div class="meta"><span>게임</span><span>조회 142.9만</span><span>좋아요 1.2만</span><span>댓글 131</span></div>
+            <div class="pub">업로드: 2026-07-08 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=viKFyeAcFuc" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/viKFyeAcFuc" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=xo15L091lqI" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/xo15L091lqI/maxresdefault.jpg" alt="Honest Trailers | Obsession 썸네일" loading="lazy" />
+            <span class="duration">6:36</span>
+            <span class="rank">#11</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=xo15L091lqI" target="_blank" rel="noopener noreferrer">Honest Trailers | Obsession</a>
+            <div class="channel">Screen Junkies</div>
+            <div class="meta"><span>영화/애니메이션</span><span>조회 28.9만</span><span>좋아요 1.4만</span><span>댓글 1,189</span></div>
+            <div class="pub">업로드: 2026-07-07 · 예고편/영화 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=xo15L091lqI" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/xo15L091lqI" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=kauDQbnmjvk" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/kauDQbnmjvk/maxresdefault.jpg" alt="That’s Not My Mom… 썸네일" loading="lazy" />
+            <span class="duration">1:29:10</span>
+            <span class="rank">#12</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=kauDQbnmjvk" target="_blank" rel="noopener noreferrer">That’s Not My Mom…</a>
+            <div class="channel">CaseOh</div>
+            <div class="meta"><span>게임</span><span>조회 36.5만</span><span>좋아요 1.7만</span><span>댓글 1,540</span></div>
+            <div class="pub">업로드: 2026-07-07 · 게임/e스포츠 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=kauDQbnmjvk" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/kauDQbnmjvk" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=hRnS0Wf64Is" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/hRnS0Wf64Is/maxresdefault.jpg" alt="U2 - Street Of Dreams (Official Video) 썸네일" loading="lazy" />
+            <span class="duration">4:40</span>
+            <span class="rank">#13</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=hRnS0Wf64Is" target="_blank" rel="noopener noreferrer">U2 - Street Of Dreams (Official Video)</a>
+            <div class="channel">U2</div>
+            <div class="meta"><span>음악</span><span>조회 30.3만</span><span>좋아요 2.3만</span><span>댓글 2,064</span></div>
+            <div class="pub">업로드: 2026-07-07 · 음악/K-pop·팝 관심 신호</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=hRnS0Wf64Is" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/hRnS0Wf64Is" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=aK_GmKH81jU" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/aK_GmKH81jU/maxresdefault.jpg" alt="Spider-Man Final Trailer, The Odyssey First Reactions, MCU X-Men &amp; MORE!! 썸네일" loading="lazy" />
+            <span class="duration">18:28</span>
+            <span class="rank">#14</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=aK_GmKH81jU" target="_blank" rel="noopener noreferrer">Spider-Man Final Trailer, The Odyssey First Reactions, MCU X-Men &amp; MORE!!</a>
+            <div class="channel">3C Films</div>
+            <div class="meta"><span>엔터테인먼트</span><span>조회 7.4만</span><span>좋아요 6,078</span><span>댓글 665</span></div>
+            <div class="pub">업로드: 2026-07-07 · 트레일러 이슈</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=aK_GmKH81jU" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/aK_GmKH81jU" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="https://www.youtube.com/watch?v=glqkQynuP3Q" target="_blank" rel="noopener noreferrer" title="YouTube에서 보기">
+            <img src="https://i.ytimg.com/vi/glqkQynuP3Q/maxresdefault.jpg" alt="Cristian Robles - No Fue Suerte, Fue Dios (Lyric Video) 썸네일" loading="lazy" />
+            <span class="duration">3:10</span>
+            <span class="rank">#15</span>
+          </a>
+          <div class="body">
+            <a class="title" href="https://www.youtube.com/watch?v=glqkQynuP3Q" target="_blank" rel="noopener noreferrer">Cristian Robles - No Fue Suerte, Fue Dios (Lyric Video)</a>
+            <div class="channel">Cristian Robles</div>
+            <div class="meta"><span>인물/블로그</span><span>조회 17.3만</span><span>좋아요 1,984</span><span>댓글 16</span></div>
+            <div class="pub">업로드: 2026-07-06 · 인기 차트 상위권</div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=glqkQynuP3Q" target="_blank" rel="noopener noreferrer">watch 링크</a><a href="https://www.youtube.com/shorts/glqkQynuP3Q" target="_blank" rel="noopener noreferrer">shorts 링크</a></div>
+          </div>
+        </article></div>
+    </section>
+</main>
+<footer>
+  <b>분류 기준</b><br/>
+  Shorts 후보: 2024-10-15 이후 업로드 + 180초 이하. YouTube Data API 응답에는 공식 Shorts 여부나 세로/정사각형 비율 필드가 없으므로, 이 리포트는 “공식 Shorts 확정”이 아니라 자동 분류 후보입니다.<br/>
+  Long-form: 180초 초과 영상. 공식 아티스트 채널의 별도 기준은 API 응답만으로 안정 판별하기 어려워 일반 채널 기준을 적용했습니다.
+</footer>
+</body>
+</html>
